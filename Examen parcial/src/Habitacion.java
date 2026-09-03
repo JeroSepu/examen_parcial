@@ -8,7 +8,7 @@ public class Habitacion implements recibo {
     protected double total;
 
     public Habitacion(int id, String nombre, double tarifa_Base, int noches) {
-        contadorHabitacion = contadorHabitacion+1;
+        contadorHabitacion = contadorHabitacion + 1;
         this.id = contadorHabitacion;
         this.nombre = nombre;
         this.tarifa_Base = tarifa_Base;
@@ -21,17 +21,20 @@ public class Habitacion implements recibo {
         String recibo = "----- RECIBO CITA #" + id + " -----\n";
         recibo = recibo + "Cliente: " + nombre + "\n";
         recibo = recibo + "Barbero: " + noches + "\n";
-
-
         recibo = recibo + "Total a pagar: $" + total + "\n";
-
         return recibo;
     }
 
-    private void numeroDeHabitaciones(double habitaciones) {
+    public void numeroDeHabitaciones(double habitaciones) {
         if (contadorHabitacion > 5) {
             throw new NumeroDeHbitacionesException(
                     "No puedes reservar mas de 5 Habitaciones.");
+        }
+    }
+       private void noches(int noches){
+            if (noches > 0) {
+                throw new NochesNegativasException(
+                        "No puedes reservar menos de una noche.");
         }
     }
 }
